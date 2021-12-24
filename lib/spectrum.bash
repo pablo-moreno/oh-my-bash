@@ -30,19 +30,19 @@ if [ "${BASH_VERSINFO[0]}" -gt 4 ]; then
   done
 
 
-  OSH_SPECTRUM_TEXT=${OSH_SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab oris}
+  OMB_SPECTRUM_TEXT=${OMB_SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab oris}
 
   # Show all 256 colors with color number
   function spectrum_ls() {
     for code in {000..255}; do
-      print -P -- "$code: %{$FG[$code]%}$OSH_SPECTRUM_TEXT%{$reset_color%}"
+      print -P -- "$code: %{$FG[$code]%}$OMB_SPECTRUM_TEXT%{$reset_color%}"
     done
   }
 
   # Show all 256 colors where the background is set to specific color
   function spectrum_bls() {
     for code in {000..255}; do
-      print -P -- "$code: %{$BG[$code]%}$OSH_SPECTRUM_TEXT%{$reset_color%}"
+      print -P -- "$code: %{$BG[$code]%}$OMB_SPECTRUM_TEXT%{$reset_color%}"
     done
   }
 fi

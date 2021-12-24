@@ -25,10 +25,10 @@ function _omb {
     'changelog:Print the changelog'
     'help:Usage information'
     'plugin:Manage plugins'
-    'pr:Manage Oh My Zsh Pull Requests'
-    'reload:Reload the current zsh session'
+    'pr:Manage Oh My Bash Pull Requests'
+    'reload:Reload the current bash session'
     'theme:Manage themes'
-    'update:Update Oh My Zsh'
+    'update:Update Oh My Bash'
     'version:Show the version'
   )
 
@@ -37,7 +37,7 @@ function _omb {
   elif (( CURRENT == 3 )); then
     case "$words[2]" in
       changelog) local -a refs
-        refs=("${(@f)$(cd "$OSH"; command git for-each-ref --format="%(refname:short):%(subject)" refs/heads refs/tags)}")
+        refs=("${(@f)$(cd "$OMB"; command git for-each-ref --format="%(refname:short):%(subject)" refs/heads refs/tags)}")
         _describe 'command' refs ;;
       plugin) subcmds=(
         'disable:Disable plugin(s)'
@@ -61,7 +61,7 @@ function _omb {
           # if command is "disable", only offer already enabled plugins
           valid_plugins=($plugins)
         else
-          valid_plugins=("$OSH"/plugins/*/{_*,*.plugin.zsh}(.N:h:t) "$OSH_CUSTOM"/plugins/*/{_*,*.plugin.zsh}(.N:h:t))
+          valid_plugins=("$OMB"/plugins/*/{_*,*.plugin.zsh}(.N:h:t) "$OMB_CUSTOM"/plugins/*/{_*,*.plugin.zsh}(.N:h:t))
           # if command is "enable", remove already enabled plugins
           [[ "${words[3]}" = enable ]] && valid_plugins=(${valid_plugins:|plugins})
         fi
@@ -69,11 +69,11 @@ function _omb {
         _describe 'plugin' valid_plugins ;;
       plugin::info)
         local -aU plugins
-        plugins=("$OSH"/plugins/*/{_*,*.plugin.zsh}(.N:h:t) "$OSH_CUSTOM"/plugins/*/{_*,*.plugin.zsh}(.N:h:t))
+        plugins=("$OMB"/plugins/*/{_*,*.plugin.zsh}(.N:h:t) "$OMB_CUSTOM"/plugins/*/{_*,*.plugin.zsh}(.N:h:t))
         _describe 'plugin' plugins ;;
       theme::(set|use))
         local -aU themes
-        themes=("$OSH"/themes/*.zsh-theme(.N:t:r) "$OSH_CUSTOM"/**/*.zsh-theme(.N:r:gs:"$OSH_CUSTOM"/themes/:::gs:"$OSH_CUSTOM"/:::))
+        themes=("$OMB"/themes/*.zsh-theme(.N:t:r) "$OMB_CUSTOM"/**/*.zsh-theme(.N:r:gs:"$OMB_CUSTOM"/themes/:::gs:"$OMB_CUSTOM"/:::))
         _describe 'theme' themes ;;
     esac
   elif (( CURRENT > 4 )); then
@@ -85,7 +85,7 @@ function _omb {
           # if command is "disable", only offer already enabled plugins
           valid_plugins=($plugins)
         else
-          valid_plugins=("$OSH"/plugins/*/{_*,*.plugin.zsh}(.N:h:t) "$OSH_CUSTOM"/plugins/*/{_*,*.plugin.zsh}(.N:h:t))
+          valid_plugins=("$OMB"/plugins/*/{_*,*.plugin.zsh}(.N:h:t) "$OMB_CUSTOM"/plugins/*/{_*,*.plugin.zsh}(.N:h:t))
           # if command is "enable", remove already enabled plugins
           [[ "${words[3]}" = enable ]] && valid_plugins=(${valid_plugins:|plugins})
         fi

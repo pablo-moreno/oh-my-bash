@@ -22,7 +22,7 @@ else
 fi
 
 printf "${BLUE}%s${NORMAL}\n" "Updating Oh My Bash"
-cd "$OSH"
+cd "$OMB"
 if git pull --rebase --stat origin master
 then
   printf '%s' "$GREEN"

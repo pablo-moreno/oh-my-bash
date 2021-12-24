@@ -11,12 +11,12 @@ function _update_osh_update() {
 }
 
 function _upgrade_osh() {
-  env BASH=$OSH sh $OSH/tools/upgrade.bash
+  env BASH=$OMB sh $OMB/tools/upgrade.bash
   # update the osh file
   _update_osh_update
 }
 
-epoch_target=$UPDATE_OSH_DAYS
+epoch_target=$UPDATE_OMB_DAYS
 if [[ -z "$epoch_target" ]]; then
   # Default to old behavior
   epoch_target=13
@@ -24,12 +24,12 @@ fi
 
 # Cancel upgrade if the current user doesn't have write permissions for the
 # oh-my-bash directory.
-[[ -w "$OSH" ]] || return 0
+[[ -w "$OMB" ]] || return 0
 
 # Cancel upgrade if git is unavailable on the system
 which git >/dev/null || return 0
 
-if mkdir "$OSH/log/update.lock" 2>/dev/null; then
+if mkdir "$OMB/log/update.lock" 2>/dev/null; then
   if [ -f ~/.osh-update ]; then
     . ~/.osh-update
 
@@ -56,5 +56,5 @@ if mkdir "$OSH/log/update.lock" 2>/dev/null; then
     _update_osh_update
   fi
 
-  rmdir $OSH/log/update.lock
+  rmdir $OMB/log/update.lock
 fi

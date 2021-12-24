@@ -1,9 +1,9 @@
 # Path to your oh-my-bash installation.
-export OSH=$HOME/.oh-my-bash
+export OMB=$HOME/.oh-my-bash
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
-OSH_THEME="font"
+OMB_THEME="font"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -16,7 +16,7 @@ OSH_THEME="font"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_OSH_DAYS=13
+# export UPDATE_OMB_DAYS=13
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -40,8 +40,8 @@ OSH_THEME="font"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $OSH/custom?
-# OSH_CUSTOM=/path/to/new-custom-folder
+# Would you like to use another custom folder than $OMB/custom?
+# OMB_CUSTOM=/path/to/new-custom-folder
 
 # Which completions would you like to load? (completions can be found in ~/.oh-my-bash/completions/*)
 # Custom completions may be added to ~/.oh-my-bash/custom/completions/
@@ -70,7 +70,7 @@ plugins=(
   bashmarks
 )
 
-source $OSH/oh-my-bash.bash
+source $OMB/oh-my-bash.bash
 
 # User configuration
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -93,7 +93,7 @@ source $OSH/oh-my-bash.bash
 
 # Set personal aliases, overriding those provided by oh-my-bash libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-bash
-# users are encouraged to define aliases within the OSH_CUSTOM folder.
+# users are encouraged to define aliases within the OMB_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases

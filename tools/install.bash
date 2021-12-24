@@ -27,23 +27,21 @@ main() {
   set -e
 
   # Checks the minium version of bash (v4) installed, 
-  # stops the installation if check fails
+  # tell the user Bash 4 is nice to have
   if [ -n $BASH_VERSION ]; then
      bash_major_version=$(echo $BASH_VERSION | cut -d '.' -f 1)
      if [ "${bash_major_version}" -lt "4" ]; then
-        printf "Error: Bash 4 required for Oh My Bash.\n"
-        printf "Error: Upgrade Bash and try again.\n"
-        exit 1
+        printf "Warning ;) Bash >=4 is no longer required for Oh My Bash. But it's cool to have, do you want to try?\n"
      fi
   fi
 
-  if [ ! -n "$OSH" ]; then
-    OSH=$HOME/.oh-my-bash
+  if [ ! -n "$OMB" ]; then
+    OMB=$HOME/.oh-my-bash
   fi
 
-  if [ -d "$OSH" ]; then
+  if [ -d "$OMB" ]; then
     printf "${YELLOW}You already have Oh My Bash installed.${NORMAL}\n"
-    printf "You'll need to remove $OSH if you want to re-install.\n"
+    printf "You'll need to remove $OMB if you want to re-install.\n"
     exit
   fi
 
@@ -67,7 +65,7 @@ main() {
       exit 1
     fi
   fi
-  env git clone --depth=1 https://github.com/ohmybash/oh-my-bash.git $OSH || {
+  env git clone --depth=1 https://github.com/ohmybash/oh-my-bash.git $OMB || {
     printf "Error: git clone of oh-my-bash repo failed\n"
     exit 1
   }
@@ -79,9 +77,9 @@ main() {
   fi
 
   printf "${BLUE}Using the Oh My Bash template file and adding it to ~/.bashrc${NORMAL}\n"
-  cp $OSH/templates/bashrc.osh-template $HOME/.bashrc
-  sed "/^export OSH=/ c\\
-export OSH=$OSH
+  cp $OMB/templates/bashrc.osh-template $HOME/.bashrc
+  sed "/^export OMB=/ c\\
+export OMB=$OMB
   " $HOME/.bashrc > $HOME/.bashrc-ombtemp
   mv -f $HOME/.bashrc-ombtemp $HOME/.bashrc
 

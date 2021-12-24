@@ -6,5 +6,5 @@ function nvm_prompt_info() {
   nvm_prompt=$(node -v 2>/dev/null)
   [[ "${nvm_prompt}x" == "x" ]] && return
   nvm_prompt=${nvm_prompt:1}
-  echo "${OSH_THEME_NVM_PROMPT_PREFIX}${nvm_prompt}${OSH_THEME_NVM_PROMPT_SUFFIX}"
+  echo "${OMB_THEME_NVM_PROMPT_PREFIX}${nvm_prompt}${OMB_THEME_NVM_PROMPT_SUFFIX}"
 }

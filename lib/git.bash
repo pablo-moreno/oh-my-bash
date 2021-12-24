@@ -5,7 +5,7 @@ function git_prompt_info() {
   if [[ "$(command git config --get oh-my-bash.hide-status 2>/dev/null)" != "1" ]]; then
     ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
     ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
-    echo "$OSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$OSH_THEME_GIT_PROMPT_SUFFIX"
+    echo "$OMB_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$OMB_THEME_GIT_PROMPT_SUFFIX"
   fi
 }
 
@@ -24,9 +24,9 @@ function parse_git_dirty() {
     STATUS=$(command git status "${FLAGS[@]}" 2> /dev/null | tail -n1)
   fi
   if [[ -n $STATUS ]]; then
-    echo "$OSH_THEME_GIT_PROMPT_DIRTY"
+    echo "$OMB_THEME_GIT_PROMPT_DIRTY"
   else
-    echo "$OSH_THEME_GIT_PROMPT_CLEAN"
+    echo "$OMB_THEME_GIT_PROMPT_CLEAN"
   fi
 }
 
@@ -40,20 +40,20 @@ function git_remote_status() {
         behind=$(command git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
 
         if [[ $ahead -eq 0 ]] && [[ $behind -eq 0 ]]; then
-            git_remote_status="$OSH_THEME_GIT_PROMPT_EQUAL_REMOTE"
+            git_remote_status="$OMB_THEME_GIT_PROMPT_EQUAL_REMOTE"
         elif [[ $ahead -gt 0 ]] && [[ $behind -eq 0 ]]; then
-            git_remote_status="$OSH_THEME_GIT_PROMPT_AHEAD_REMOTE"
-            git_remote_status_detailed="$OSH_THEME_GIT_PROMPT_AHEAD_REMOTE_COLOR$OSH_THEME_GIT_PROMPT_AHEAD_REMOTE$((ahead))%{$reset_color%}"
+            git_remote_status="$OMB_THEME_GIT_PROMPT_AHEAD_REMOTE"
+            git_remote_status_detailed="$OMB_THEME_GIT_PROMPT_AHEAD_REMOTE_COLOR$OMB_THEME_GIT_PROMPT_AHEAD_REMOTE$((ahead))%{$reset_color%}"
         elif [[ $behind -gt 0 ]] && [[ $ahead -eq 0 ]]; then
-            git_remote_status="$OSH_THEME_GIT_PROMPT_BEHIND_REMOTE"
-            git_remote_status_detailed="$OSH_THEME_GIT_PROMPT_BEHIND_REMOTE_COLOR$OSH_THEME_GIT_PROMPT_BEHIND_REMOTE$((behind))%{$reset_color%}"
+            git_remote_status="$OMB_THEME_GIT_PROMPT_BEHIND_REMOTE"
+            git_remote_status_detailed="$OMB_THEME_GIT_PROMPT_BEHIND_REMOTE_COLOR$OMB_THEME_GIT_PROMPT_BEHIND_REMOTE$((behind))%{$reset_color%}"
         elif [[ $ahead -gt 0 ]] && [[ $behind -gt 0 ]]; then
-            git_remote_status="$OSH_THEME_GIT_PROMPT_DIVERGED_REMOTE"
-            git_remote_status_detailed="$OSH_THEME_GIT_PROMPT_AHEAD_REMOTE_COLOR$OSH_THEME_GIT_PROMPT_AHEAD_REMOTE$((ahead))%{$reset_color%}$OSH_THEME_GIT_PROMPT_BEHIND_REMOTE_COLOR$OSH_THEME_GIT_PROMPT_BEHIND_REMOTE$((behind))%{$reset_color%}"
+            git_remote_status="$OMB_THEME_GIT_PROMPT_DIVERGED_REMOTE"
+            git_remote_status_detailed="$OMB_THEME_GIT_PROMPT_AHEAD_REMOTE_COLOR$OMB_THEME_GIT_PROMPT_AHEAD_REMOTE$((ahead))%{$reset_color%}$OMB_THEME_GIT_PROMPT_BEHIND_REMOTE_COLOR$OMB_THEME_GIT_PROMPT_BEHIND_REMOTE$((behind))%{$reset_color%}"
         fi
 
-        if [[ -n $OSH_THEME_GIT_PROMPT_REMOTE_STATUS_DETAILED ]]; then
-            git_remote_status="$OSH_THEME_GIT_PROMPT_REMOTE_STATUS_PREFIX$remote$git_remote_status_detailed$OSH_THEME_GIT_PROMPT_REMOTE_STATUS_SUFFIX"
+        if [[ -n $OMB_THEME_GIT_PROMPT_REMOTE_STATUS_DETAILED ]]; then
+            git_remote_status="$OMB_THEME_GIT_PROMPT_REMOTE_STATUS_PREFIX$remote$git_remote_status_detailed$OMB_THEME_GIT_PROMPT_REMOTE_STATUS_SUFFIX"
         fi
 
         echo $git_remote_status
@@ -81,7 +81,7 @@ function git_commits_ahead() {
   if command git rev-parse --git-dir &>/dev/null; then
     local commits="$(git rev-list --count @{upstream}..HEAD)"
     if [[ "$commits" != 0 ]]; then
-      echo "$OSH_THEME_GIT_COMMITS_AHEAD_PREFIX$commits$OSH_THEME_GIT_COMMITS_AHEAD_SUFFIX"
+      echo "$OMB_THEME_GIT_COMMITS_AHEAD_PREFIX$commits$OMB_THEME_GIT_COMMITS_AHEAD_SUFFIX"
     fi
   fi
 }
@@ -91,7 +91,7 @@ function git_commits_behind() {
   if command git rev-parse --git-dir &>/dev/null; then
     local commits="$(git rev-list --count HEAD..@{upstream})"
     if [[ "$commits" != 0 ]]; then
-      echo "$OSH_THEME_GIT_COMMITS_BEHIND_PREFIX$commits$OSH_THEME_GIT_COMMITS_BEHIND_SUFFIX"
+      echo "$OMB_THEME_GIT_COMMITS_BEHIND_PREFIX$commits$OMB_THEME_GIT_COMMITS_BEHIND_SUFFIX"
     fi
   fi
 }
@@ -99,36 +99,36 @@ function git_commits_behind() {
 # Outputs if current branch is ahead of remote
 function git_prompt_ahead() {
   if [[ -n "$(command git rev-list origin/$(git_current_branch)..HEAD 2> /dev/null)" ]]; then
-    echo "$OSH_THEME_GIT_PROMPT_AHEAD"
+    echo "$OMB_THEME_GIT_PROMPT_AHEAD"
   fi
 }
 
 # Outputs if current branch is behind remote
 function git_prompt_behind() {
   if [[ -n "$(command git rev-list HEAD..origin/$(git_current_branch) 2> /dev/null)" ]]; then
-    echo "$OSH_THEME_GIT_PROMPT_BEHIND"
+    echo "$OMB_THEME_GIT_PROMPT_BEHIND"
   fi
 }
 
 # Outputs if current branch exists on remote or not
 function git_prompt_remote() {
   if [[ -n "$(command git show-ref origin/$(git_current_branch) 2> /dev/null)" ]]; then
-    echo "$OSH_THEME_GIT_PROMPT_REMOTE_EXISTS"
+    echo "$OMB_THEME_GIT_PROMPT_REMOTE_EXISTS"
   else
-    echo "$OSH_THEME_GIT_PROMPT_REMOTE_MISSING"
+    echo "$OMB_THEME_GIT_PROMPT_REMOTE_MISSING"
   fi
 }
 
 # Formats prompt string for current git commit short SHA
 function git_prompt_short_sha() {
   local SHA
-  SHA=$(command git rev-parse --short HEAD 2> /dev/null) && echo "$OSH_THEME_GIT_PROMPT_SHA_BEFORE$SHA$OSH_THEME_GIT_PROMPT_SHA_AFTER"
+  SHA=$(command git rev-parse --short HEAD 2> /dev/null) && echo "$OMB_THEME_GIT_PROMPT_SHA_BEFORE$SHA$OMB_THEME_GIT_PROMPT_SHA_AFTER"
 }
 
 # Formats prompt string for current git commit long SHA
 function git_prompt_long_sha() {
   local SHA
-  SHA=$(command git rev-parse HEAD 2> /dev/null) && echo "$OSH_THEME_GIT_PROMPT_SHA_BEFORE$SHA$OSH_THEME_GIT_PROMPT_SHA_AFTER"
+  SHA=$(command git rev-parse HEAD 2> /dev/null) && echo "$OMB_THEME_GIT_PROMPT_SHA_BEFORE$SHA$OMB_THEME_GIT_PROMPT_SHA_AFTER"
 }
 
 # Get the status of the working tree
@@ -137,44 +137,44 @@ function git_prompt_status() {
   INDEX=$(command git status --porcelain -b 2> /dev/null)
   STATUS=""
   if $(echo "$INDEX" | command grep -E '^\?\? ' &> /dev/null); then
-    STATUS="$OSH_THEME_GIT_PROMPT_UNTRACKED$STATUS"
+    STATUS="$OMB_THEME_GIT_PROMPT_UNTRACKED$STATUS"
   fi
   if $(echo "$INDEX" | grep '^A  ' &> /dev/null); then
-    STATUS="$OSH_THEME_GIT_PROMPT_ADDED$STATUS"
+    STATUS="$OMB_THEME_GIT_PROMPT_ADDED$STATUS"
   elif $(echo "$INDEX" | grep '^M  ' &> /dev/null); then
-    STATUS="$OSH_THEME_GIT_PROMPT_ADDED$STATUS"
+    STATUS="$OMB_THEME_GIT_PROMPT_ADDED$STATUS"
   fi
   if $(echo "$INDEX" | grep '^ M ' &> /dev/null); then
-    STATUS="$OSH_THEME_GIT_PROMPT_MODIFIED$STATUS"
+    STATUS="$OMB_THEME_GIT_PROMPT_MODIFIED$STATUS"
   elif $(echo "$INDEX" | grep '^AM ' &> /dev/null); then
-    STATUS="$OSH_THEME_GIT_PROMPT_MODIFIED$STATUS"
+    STATUS="$OMB_THEME_GIT_PROMPT_MODIFIED$STATUS"
   elif $(echo "$INDEX" | grep '^ T ' &> /dev/null); then
-    STATUS="$OSH_THEME_GIT_PROMPT_MODIFIED$STATUS"
+    STATUS="$OMB_THEME_GIT_PROMPT_MODIFIED$STATUS"
   fi
   if $(echo "$INDEX" | grep '^R  ' &> /dev/null); then
-    STATUS="$OSH_THEME_GIT_PROMPT_RENAMED$STATUS"
+    STATUS="$OMB_THEME_GIT_PROMPT_RENAMED$STATUS"
   fi
   if $(echo "$INDEX" | grep '^ D ' &> /dev/null); then
-    STATUS="$OSH_THEME_GIT_PROMPT_DELETED$STATUS"
+    STATUS="$OMB_THEME_GIT_PROMPT_DELETED$STATUS"
   elif $(echo "$INDEX" | grep '^D  ' &> /dev/null); then
-    STATUS="$OSH_THEME_GIT_PROMPT_DELETED$STATUS"
+    STATUS="$OMB_THEME_GIT_PROMPT_DELETED$STATUS"
   elif $(echo "$INDEX" | grep '^AD ' &> /dev/null); then
-    STATUS="$OSH_THEME_GIT_PROMPT_DELETED$STATUS"
+    STATUS="$OMB_THEME_GIT_PROMPT_DELETED$STATUS"
   fi
   if $(command git rev-parse --verify refs/stash >/dev/null 2>&1); then
-    STATUS="$OSH_THEME_GIT_PROMPT_STASHED$STATUS"
+    STATUS="$OMB_THEME_GIT_PROMPT_STASHED$STATUS"
   fi
   if $(echo "$INDEX" | grep '^UU ' &> /dev/null); then
-    STATUS="$OSH_THEME_GIT_PROMPT_UNMERGED$STATUS"
+    STATUS="$OMB_THEME_GIT_PROMPT_UNMERGED$STATUS"
   fi
   if $(echo "$INDEX" | grep '^## [^ ]\+ .*ahead' &> /dev/null); then
-    STATUS="$OSH_THEME_GIT_PROMPT_AHEAD$STATUS"
+    STATUS="$OMB_THEME_GIT_PROMPT_AHEAD$STATUS"
   fi
   if $(echo "$INDEX" | grep '^## [^ ]\+ .*behind' &> /dev/null); then
-    STATUS="$OSH_THEME_GIT_PROMPT_BEHIND$STATUS"
+    STATUS="$OMB_THEME_GIT_PROMPT_BEHIND$STATUS"
   fi
   if $(echo "$INDEX" | grep '^## [^ ]\+ .*diverged' &> /dev/null); then
-    STATUS="$OSH_THEME_GIT_PROMPT_DIVERGED$STATUS"
+    STATUS="$OMB_THEME_GIT_PROMPT_DIVERGED$STATUS"
   fi
   echo $STATUS
 }

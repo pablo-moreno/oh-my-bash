@@ -4,11 +4,11 @@ function bash_stats() {
 }
 
 function uninstall_oh_my_bash() {
-  env OSH=$OSH sh $OSH/tools/uninstall.bash
+  env OMB=$OMB sh $OMB/tools/uninstall.bash
 }
 
 function upgrade_oh_my_bash() {
-  env OSH=$OSH sh $OSH/tools/upgrade.bash
+  env OMB=$OMB sh $OMB/tools/upgrade.bash
 }
 
 function take() {

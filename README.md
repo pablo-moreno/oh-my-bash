@@ -65,13 +65,13 @@ _Powerline's theme is the default one. It's not the fanciest one. It's not the s
 Once you find a theme that you want to use, you will need to edit the `~/.bashrc` file. You'll see an environment variable (all caps) in there that looks like:
 
 ```shell
-OSH_THEME="powerline"
+OMB_THEME="powerline"
 ```
 
 To use a different theme, simply change the value to match the name of your desired theme. For example:
 
 ```shell
-OSH_THEME="agnoster" # (this is one of the fancy ones)
+OMB_THEME="agnoster" # (this is one of the fancy ones)
 # you might need to install a special Powerline font on your console's host for this to work
 # see https://github.com/ohmybash/oh-my-bash/wiki/Themes#agnoster
 ```
@@ -86,7 +86,7 @@ If you're feeling feisty, you can let the computer select one randomly for you e
 
 
 ```shell
-OSH_THEME="random" # (...please let it be pie... please be some pie..)
+OMB_THEME="random" # (...please let it be pie... please be some pie..)
 ```
 
 ## Advanced Topics
@@ -101,10 +101,10 @@ Some users may want to change the default path, or manually install Oh My Bash.
 
 The default location is `~/.oh-my-bash` (hidden in your home directory)
 
-If you'd like to change the install directory with the `OSH` environment variable, either by running `export OSH=/your/path` before installing, or by setting it before the end of the install pipeline like this:
+If you'd like to change the install directory with the `OMB` environment variable, either by running `export OMB=/your/path` before installing, or by setting it before the end of the install pipeline like this:
 
 ```shell
-export OSH="$HOME/.dotfiles/oh-my-bash"; sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.bash)"
+export OMB="$HOME/.dotfiles/oh-my-bash"; sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.bash)"
 ```
 
 #### Manual Installation
@@ -144,7 +144,7 @@ Once you open up a new terminal window, it should load sh with Oh My Bash's conf
 If you have any hiccups installing, here are a few common fixes.
 
 * You _might_ need to modify your `PATH` in `~/.bashrc` if you're not able to find some commands after switching to `oh-my-bash`.
-* If you installed manually or changed the install location, check the `OSH` environment variable in `~/.bashrc`.
+* If you installed manually or changed the install location, check the `OMB` environment variable in `~/.bashrc`.
 
 ### Custom Plugins and Themes
 
