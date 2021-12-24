@@ -8,7 +8,7 @@ esac
 
 # Check for updates on initial load...
 if [ "$DISABLE_AUTO_UPDATE" != "true" ]; then
-  env OSH=$OSH DISABLE_UPDATE_PROMPT=$DISABLE_UPDATE_PROMPT bash -f $OSH/tools/check_for_upgrade.sh
+  env OSH=$OSH DISABLE_UPDATE_PROMPT=$DISABLE_UPDATE_PROMPT bash -f $OSH/tools/check_for_upgrade.bash
 fi
 
 # Initializes Oh My Bash
@@ -28,9 +28,9 @@ if [[ -z "$OSH_CACHE_DIR" ]]; then
   OSH_CACHE_DIR="$OSH/cache"
 fi
 
-# Load all of the config files in ~/.oh-my-bash/lib that end in .sh
+# Load all of the config files in ~/.oh-my-bash/lib that end in .bash
 # TIP: Add files you don't want in git to .gitignore
-for config_file in $OSH/lib/*.sh; do
+for config_file in $OSH/lib/*.bash; do
   custom_config_file="${OSH_CUSTOM}/lib/${config_file:t}"
   [ -f "${custom_config_file}" ] && config_file=${custom_config_file}
   source $config_file
@@ -40,7 +40,7 @@ done
 is_plugin() {
   local base_dir=$1
   local name=$2
-  test -f $base_dir/plugins/$name/$name.plugin.sh \
+  test -f $base_dir/plugins/$name/$name.plugin.bash \
     || test -f $base_dir/plugins/$name/_$name
 }
 # Add all defined plugins to fpath. This must be done
@@ -56,7 +56,7 @@ done
 is_completion() {
   local base_dir=$1
   local name=$2
-  test -f $base_dir/completions/$name/$name.completion.sh
+  test -f $base_dir/completions/$name/$name.completion.bash
 }
 # Add all defined completions to fpath. This must be done
 # before running compinit.
@@ -71,7 +71,7 @@ done
 is_alias() {
   local base_dir=$1
   local name=$2
-  test -f $base_dir/aliases/$name/$name.aliases.sh
+  test -f $base_dir/aliases/$name/$name.aliases.bash
 }
 # Add all defined completions to fpath. This must be done
 # before running compinit.
@@ -93,33 +93,33 @@ fi
 
 # Load all of the plugins that were defined in ~/.bashrc
 for plugin in ${plugins[@]}; do
-  if [ -f $OSH_CUSTOM/plugins/$plugin/$plugin.plugin.sh ]; then
-    source $OSH_CUSTOM/plugins/$plugin/$plugin.plugin.sh
-  elif [ -f $OSH/plugins/$plugin/$plugin.plugin.sh ]; then
-    source $OSH/plugins/$plugin/$plugin.plugin.sh
+  if [ -f $OSH_CUSTOM/plugins/$plugin/$plugin.plugin.bash ]; then
+    source $OSH_CUSTOM/plugins/$plugin/$plugin.plugin.bash
+  elif [ -f $OSH/plugins/$plugin/$plugin.plugin.bash ]; then
+    source $OSH/plugins/$plugin/$plugin.plugin.bash
   fi
 done
 
 # Load all of the aliases that were defined in ~/.bashrc
 for alias in ${aliases[@]}; do
-  if [ -f $OSH_CUSTOM/aliases/$alias.aliases.sh ]; then
-    source $OSH_CUSTOM/aliases/$alias.aliases.sh
-  elif [ -f $OSH/aliases/$alias.aliases.sh ]; then
-    source $OSH/aliases/$alias.aliases.sh
+  if [ -f $OSH_CUSTOM/aliases/$alias.aliases.bash ]; then
+    source $OSH_CUSTOM/aliases/$alias.aliases.bash
+  elif [ -f $OSH/aliases/$alias.aliases.bash ]; then
+    source $OSH/aliases/$alias.aliases.bash
   fi
 done
 
 # Load all of the completions that were defined in ~/.bashrc
 for completion in ${completions[@]}; do
-  if [ -f $OSH_CUSTOM/completions/$completion.completion.sh ]; then
-    source $OSH_CUSTOM/completions/$completion.completion.sh
-  elif [ -f $OSH/completions/$completion.completion.sh ]; then
-    source $OSH/completions/$completion.completion.sh
+  if [ -f $OSH_CUSTOM/completions/$completion.completion.bash ]; then
+    source $OSH_CUSTOM/completions/$completion.completion.bash
+  elif [ -f $OSH/completions/$completion.completion.bash ]; then
+    source $OSH/completions/$completion.completion.bash
   fi
 done
 
 # Load all of your custom configurations from custom/
-for config_file in $OSH_CUSTOM/*.sh; do
+for config_file in $OSH_CUSTOM/*.bash; do
   if [ -f $config_file ]; then
     source $config_file
   fi
@@ -127,12 +127,12 @@ done
 unset config_file
 
 # Load colors first so they can be use in base theme
-source "${OSH}/themes/colours.theme.sh"
-source "${OSH}/themes/base.theme.sh"
+source "${OSH}/themes/colours.theme.bash"
+source "${OSH}/themes/base.theme.bash"
 
 # Load the theme
 if [ "$OSH_THEME" = "random" ]; then
-  themes=($OSH/themes/*/*theme.sh)
+  themes=($OSH/themes/*/*theme.bash)
   N=${#themes[@]}
   ((N=(RANDOM%N)))
   RANDOM_THEME=${themes[$N]}
@@ -140,12 +140,12 @@ if [ "$OSH_THEME" = "random" ]; then
   echo "[oh-my-bash] Random theme '$RANDOM_THEME' loaded..."
 else
   if [ ! "$OSH_THEME" = ""  ]; then
-    if [ -f "$OSH_CUSTOM/$OSH_THEME/$OSH_THEME.theme.sh" ]; then
-      source "$OSH_CUSTOM/$OSH_THEME/$OSH_THEME.theme.sh"
-    elif [ -f "$OSH_CUSTOM/themes/$OSH_THEME/$OSH_THEME.theme.sh" ]; then
-      source "$OSH_CUSTOM/themes/$OSH_THEME/$OSH_THEME.theme.sh"
+    if [ -f "$OSH_CUSTOM/$OSH_THEME/$OSH_THEME.theme.bash" ]; then
+      source "$OSH_CUSTOM/$OSH_THEME/$OSH_THEME.theme.bash"
+    elif [ -f "$OSH_CUSTOM/themes/$OSH_THEME/$OSH_THEME.theme.bash" ]; then
+      source "$OSH_CUSTOM/themes/$OSH_THEME/$OSH_THEME.theme.bash"
     else
-      source "$OSH/themes/$OSH_THEME/$OSH_THEME.theme.sh"
+      source "$OSH/themes/$OSH_THEME/$OSH_THEME.theme.bash"
     fi
   fi
 fi
@@ -155,7 +155,7 @@ if [[ $PROMPT ]]; then
 fi
 
 if ! type_exists '__git_ps1' ; then
-  source "$OSH/tools/git-prompt.sh"
+  source "$OSH/tools/git-prompt.bash"
 fi
 
 # Adding Support for other OSes

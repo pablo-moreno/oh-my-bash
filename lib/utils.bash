@@ -2,15 +2,15 @@
 ############################---Description---###################################
 #                                                                              #
 # Summary       : A collection of handy utilities and functions for bash       #
-# Support       : destro.nnt@gmail.com                                         #
+# Support       : hello@nntoan.com                                             #
 # Created date  : Mar 18,2017                                                  #
-# Latest Modified date : Mar 18,2017                                           #
+# Latest Modified date : Dec 24,2021                                           #
 #                                                                              #
 ################################################################################
 
 ############################---Usage---#########################################
 
-# source ~/path/to/directory/utils.sh
+# source ~/path/to/directory/utils.bash
 
 ########################## Styled text output ##################################
 

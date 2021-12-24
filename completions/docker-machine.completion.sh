@@ -1,4 +1,4 @@
-#
+#!/usr/bin/env bash
 # bash completion file for docker-machine commands
 #
 # This script provides completion of:

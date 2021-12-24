@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 function __gradle {
   local cur=${COMP_WORDS[COMP_CWORD]}
   local tasks=''

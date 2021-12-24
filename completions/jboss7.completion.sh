@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Completions for JBoss Application Server 7 (EAP 6)
 # VERSION: 0.6
 # DATE: 2012-10-30
@@ -123,7 +124,7 @@ _jboss(){
        commandsWithoutEqualSign="${commandsWithoutEqualSign} -c"
        commandsWithEqualSign="${commandsWithEqualSign} --server-config -Djboss.server.base.dir -c"
     else
-       # assume is domain.sh
+       # assume is domain.bash
        commandsWithoutEqualSign="${commandsWithoutEqualSign} --backup  --cached-dc"
        commandsWithEqualSign="${commandsWithEqualSign} -Djboss.domain.master.address --host-config -Djboss.domain.master.port -Djboss.domain.base.dir "
     fi

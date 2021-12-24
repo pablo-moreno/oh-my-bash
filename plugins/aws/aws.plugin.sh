@@ -1,4 +1,5 @@
-# aws.plugin.sh
+#!/usr/bin/env bash
+# aws.plugin.bash
 # Author: Michael Anckaert <michael.anckaert@sinax.be>
 # Based on oh-my-zsh AWS plugin
 #

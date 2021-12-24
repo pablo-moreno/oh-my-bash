@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # defaults
 # Bash command line completion for defaults
 #

@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Bash completion script for homesick
 #
 # The homebrew bash completion script was used as inspiration.

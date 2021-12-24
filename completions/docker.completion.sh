@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # bash completion file for core docker commands
 #
@@ -13,7 +13,7 @@
 #  or
 #  - copy this file to e.g. ~/.docker-completion.sh and add the line
 #    below to your .bashrc after bash completion features are loaded
-#    . ~/.docker-completion.sh
+#    . ~/.docker-completion.bash
 #
 # Configuration:
 #

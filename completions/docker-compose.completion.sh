@@ -1,4 +1,4 @@
-#!bash
+#!/usr/bin/env bash
 #
 # bash completion for docker-compose
 #
@@ -14,7 +14,7 @@
 #  or
 #  - copy this file to e.g. ~/.docker-compose-completion.sh and add the line
 #    below to your .bashrc after bash completion features are loaded
-#    . ~/.docker-compose-completion.sh
+#    . ~/.docker-compose-completion.bash
 
 
 __docker_compose_q() {

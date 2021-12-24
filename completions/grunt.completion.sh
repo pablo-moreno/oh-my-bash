@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # grunt-cli
 # http://gruntjs.com/
