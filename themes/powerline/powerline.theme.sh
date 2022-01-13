@@ -46,6 +46,6 @@ THEME_CLOCK_FORMAT=${THEME_CLOCK_FORMAT:="%H:%M:%S"}
 IN_VIM_THEME_PROMPT_COLOR=245
 IN_VIM_THEME_PROMPT_TEXT="vim"
 
-POWERLINE_PROMPT=${POWERLINE_PROMPT:="user_info scm python_venv ruby cwd"}
+POWERLINE_PROMPT=${POWERLINE_PROMPT:="user_info k8s scm python_venv ruby cwd"}
 
 _omb_util_add_prompt_command __powerline_prompt_command

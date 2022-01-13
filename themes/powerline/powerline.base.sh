@@ -40,6 +40,18 @@ function __powerline_user_info_prompt {
   [[ -n "${user_info}" ]] && echo "${user_info}|${color}"
 }
 
+function __powerline_k8s_prompt {
+  local context=$(kubectl config current-context)
+  local namespace=$(kubectl config view --minify --output 'jsonpath={..namespace}')
+  local color=${PYTHON_VENV_THEME_PROMPT_COLOR}
+
+  if [[ $namespace = "production" || "$context" -ne "minikube" ]] ; then
+    color=${SCM_THEME_PROMPT_UNSTAGED_COLOR}
+  fi
+
+  echo "(k8s) $context/$namespace|$color"
+}
+
 function __powerline_ruby_prompt {
   local ruby_version=""
 
