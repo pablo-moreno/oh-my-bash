@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#! bash oh-my-bash.module
 
 # npm (Node Package Manager) completion
 # https://docs.npmjs.com/cli/completion

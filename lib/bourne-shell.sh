@@ -1,9 +1,19 @@
-#!/usr/bin/env bash
+#! bash oh-my-bash.module
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+if [ -z "${LESSOPEN}" ];then
+  if [ -f /etc/gentoo-release ]; then
+    export LESSOPEN="|lesspipe %s"
+  else
+    if [ -x /usr/bin/lesspipe ]; then
+      eval "$(SHELL=/bin/sh /usr/bin/lesspipe)"
+    elif [ -x /usr/bin/lesspipe.sh ]; then
+      eval "$(SHELL=/bin/sh /usr/bin/lesspipe.sh)"
+    fi
+  fi
+fi
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then

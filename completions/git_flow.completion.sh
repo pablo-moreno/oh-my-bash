@@ -1,4 +1,4 @@
-#!bash
+#! bash oh-my-bash.module
 #
 # git-flow-completion
 # ===================

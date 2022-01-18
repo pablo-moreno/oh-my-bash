@@ -1,12 +1,16 @@
-#!/usr/bin/env bash
+#! bash oh-my-bash.module
 
 # Bug: https://github.com/ohmybash/oh-my-bash/issues/68
 if ! command -v "command_exists" >/dev/null; then	command_exists() { command -v "$1" >/dev/null ;	} fi
 
+_omb_plugin_battery__upower_print_info() {
+  upower -i "$(upower -e | sed -n '/BAT/{p;q;}')"
+}
+
 ac_adapter_connected(){
   if command_exists upower;
   then
-    upower -i $(upower -e | grep BAT) | grep 'state' | grep -q 'charging\|fully-charged'
+    _omb_plugin_battery__upower_print_info | grep -qE 'state[:[:blank:]]*(charging|fully-charged)'
     return $?
   elif command_exists acpi;
   then
@@ -30,7 +34,7 @@ ac_adapter_connected(){
 ac_adapter_disconnected(){
   if command_exists upower;
   then
-    upower -i $(upower -e | grep BAT) | grep 'state' | grep -q 'discharging'
+    _omb_plugin_battery__upower_print_info | grep -qE 'state[:[:blank:]]*discharging'
     return $?
   elif command_exists acpi;
   then
@@ -51,14 +55,15 @@ ac_adapter_disconnected(){
   fi
 }
 
+## @fn battery_percentage
+##   @about 'displays battery charge as a percentage of full (100%)'
+##   @group 'battery'
 battery_percentage(){
-  about 'displays battery charge as a percentage of full (100%)'
-  group 'battery'
-
   if command_exists upower;
   then
-    local UPOWER_OUTPUT=$(upower --show-info $(upower --enumerate | grep BAT) | grep percentage | tail --bytes 5)
-    echo ${UPOWER_OUTPUT: : -1}
+    local UPOWER_OUTPUT=$(_omb_plugin_battery__upower_print_info | sed -n 's/.*percentage[:[:blank:]]*\([0-9%]\{1,\}\)$/\1/p')
+    [[ $UPOWER_OUTPUT ]] &&
+      echo "${UPOWER_OUTPUT::-1}"
   elif command_exists acpi;
   then
     local ACPI_OUTPUT=$(acpi -b)
@@ -124,10 +129,10 @@ battery_percentage(){
   fi
 }
 
+## @fn battery_charge
+##   @about 'graphical display of your battery charge'
+##   @group 'battery'
 battery_charge(){
-  about 'graphical display of your battery charge'
-  group 'battery'
-
   # Full char
   local F_C='▸'
   # Depleted char

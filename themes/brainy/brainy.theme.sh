@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#! bash oh-my-bash.module
 
 # Brainy Bash Prompt for Bash-it
 # by MunifTanjim

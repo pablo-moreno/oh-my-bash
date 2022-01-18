@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#! bash oh-my-bash.module
 
 # Define this here so it can be used by all of the Powerline themes
-THEME_CHECK_SUDO=${THEME_CHECK_SUDO:=true}
+THEME_CHECK_SUDO=${THEME_CHECK_SUDO:=false}
 
 function set_color {
   if [[ "${1}" != "-" ]]; then
@@ -19,7 +19,8 @@ function __powerline_user_info_prompt {
   local color=${USER_INFO_THEME_PROMPT_COLOR}
 
   if [[ "${THEME_CHECK_SUDO}" = true ]]; then
-    if sudo -n uptime 2>&1 | grep -q "load"; then
+    # check whether sudo is active for no-password executions
+    if sudo -n cat <<< c3bcc5c 2>&1 | grep -q c3bcc5c; then
       color=${USER_INFO_THEME_PROMPT_COLOR_SUDO}
     fi
   fi

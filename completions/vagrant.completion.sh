@@ -1,4 +1,4 @@
-#!/bin/bash
+#! bash oh-my-bash.module
 
 # (The MIT License)
 #

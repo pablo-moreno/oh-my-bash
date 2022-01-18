@@ -1,3 +1,4 @@
+#! bash oh-my-bash.module
 # scm theming
 SCM_THEME_PROMPT_PREFIX="|"
 SCM_THEME_PROMPT_SUFFIX=""

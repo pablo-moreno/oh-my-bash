@@ -1,4 +1,4 @@
-#!/bin/bash
+#! bash oh-my-bash.module
 
 # grunt-cli
 # http://gruntjs.com/

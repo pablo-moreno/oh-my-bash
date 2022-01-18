@@ -1,3 +1,4 @@
+#! bash oh-my-bash.module
 # ------------------------------------------------------------------#
 #          FILE: cooperkid.zsh-theme                                #
 #            BY: Alfredo Bejarano                                   #

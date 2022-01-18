@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#! bash oh-my-bash.module
 
 # Set SDKMAN_DIR if it isn't already defined
 [[ ${SDKMAN_DIR-} ]] || export SDKMAN_DIR=~/.sdkman

@@ -1,3 +1,4 @@
+#! bash oh-my-bash.module
 
 # prompt theming
 

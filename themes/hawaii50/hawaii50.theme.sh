@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#! bash oh-my-bash.module
 #
 # This theme was obviously inspired a lot by 
 #

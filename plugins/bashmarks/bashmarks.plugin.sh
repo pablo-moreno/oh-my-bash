@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#! bash oh-my-bash.module
 # Copyright (c) 2015, Toan Nguyen - https://nntoan.github.io
 # All rights reserved.
 #

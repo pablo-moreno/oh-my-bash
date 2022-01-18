@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#! bash oh-my-bash.module
 #  ---------------------------------------------------------------------------
 #
 #  Description:  This file holds many useful BASH aliases and save our lives!

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#! bash oh-my-bash.module
 
 # Packer (http://www.packer.io) bash completion
 #

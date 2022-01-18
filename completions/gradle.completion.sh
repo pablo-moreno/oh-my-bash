@@ -1,3 +1,4 @@
+#! bash oh-my-bash.module
 function __gradle {
   local cur=${COMP_WORDS[COMP_CWORD]}
   local tasks=''
